@@ -1,5 +1,5 @@
 import streamlit as st
-from utils.auth import check_auth, logout
+from utils.auth import check_auth, logout   
 from utils.styles import inject_global_styles
 
 st.set_page_config(

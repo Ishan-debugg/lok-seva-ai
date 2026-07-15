@@ -2,16 +2,7 @@ import streamlit as st
 
 def inject_global_styles():
     st.markdown("""
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Noto+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap');
-
-    /* ── HIDE SIDEBAR COMPLETELY ────────────────────────── */
-    [data-testid="stSidebar"]         { display: none !important; }
-    [data-testid="collapsedControl"]  { display: none !important; }
-    [data-testid="stSidebarNav"]      { display: none !important; }
-    section[data-testid="stSidebar"]  { display: none !important; }
-
     /* ── ROOT COLOUR TOKENS ─────────────────────────────── */
     :root {
         --bg-deep:     #020917;   /* deepest background */
@@ -30,6 +21,12 @@ def inject_global_styles():
         --green:       #10b981;   /* success            */
         --red:         #ef4444;   /* danger             */
         --orange:      #f97316;   /* warning            */
+
+        /* Backward-compatible aliases used by existing home/dashboard markup */
+        --primary-blue: var(--primary);
+        --accent-teal: var(--teal);
+        --secondary-gold: var(--gold);
+        --green-success: var(--green);
 
         /* TEXT — all white/near-white for maximum readability */
         --text-primary:   #ffffff;

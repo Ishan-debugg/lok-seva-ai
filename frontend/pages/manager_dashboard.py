@@ -170,4 +170,3 @@ def render():
                     st.error("Failed to commit status change to backend.")
             except Exception as e:
                 st.error(f"Database update error: {e}")
-                

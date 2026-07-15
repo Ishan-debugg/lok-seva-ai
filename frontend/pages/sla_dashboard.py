@@ -235,4 +235,3 @@ def render():
             st.info("No resolved complaints with a recorded resolution time yet.")
     else:
         st.info("No data available.")
-        

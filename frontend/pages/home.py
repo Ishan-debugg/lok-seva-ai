@@ -134,4 +134,3 @@ def render():
             st.markdown("For genuinely urgent or emergency civic issues, please contact your local ward office or municipal helpline directly in addition to filing a complaint here.")
 
     st.markdown("<br><br><p style='text-align: center; color: var(--text-muted); font-size: 0.85rem;'>© 2026 Municipal Corporation of LokSeva. All Rights Reserved. Govt. of India.</p>", unsafe_allow_html=True)
-    

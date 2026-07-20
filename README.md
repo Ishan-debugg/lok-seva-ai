@@ -4,6 +4,53 @@ Lok Seva AI is an AI-based complaint classification and routing system designed 
 
 ---
 
+# 🧠 Machine Learning Pipeline
+
+```
+Complaint Text
+        │
+        ▼
+Text Cleaning
+        │
+        ▼
+TF-IDF Vectorization
+        │
+        ▼
+Trained ML Model
+        │
+        ▼
+Department Prediction
+        │
+        ▼
+Priority Classification
+        │
+        ▼
+Complaint Stored in PostgreSQL
+```
+
+---
+
+# 📊 Workflow
+
+1. User submits complaint
+2. Complaint is sent to backend
+3. ML model predicts department
+4. Priority is determined
+5. Complaint is stored in PostgreSQL
+6. User receives complaint ID
+7. Complaint can be tracked later
+
+---
+
+# 🎯 Use Cases
+
+- Municipal Corporations
+- Smart City Platforms
+- Government Grievance Portals
+- University Complaint Systems
+- Corporate Internal Helpdesks
+
+
 # 📌 Features
 
 - 🧠 AI-based complaint classification using TF-IDF and Machine Learning

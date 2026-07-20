@@ -5,7 +5,7 @@ def render():
     <div class="hero-wrap">
         <div class="hero-tag"><i class="fa-solid fa-building-columns" style="color: #38bdf8; margin-right: 6px;"></i> MUNICIPAL CORPORATION PORTAL</div>
         <div class="hero-title">Welcome to <span>LokSevaAI</span></div>
-        <p class="hero-sub">
+        <p class="hero-sub" style="color: #ffffff !important;">
         LokSevaAI is the smart civic grievance redressal and routing platform. Powered by artificial intelligence, we automatically route your complaints to correct departments for rapid SLA-tracked resolution.
         </p>
     </div>

@@ -68,11 +68,9 @@ exports.updateComplaint = async (req, res) => {
 
 exports.createComplaint = async (req, res) => {
   const complaint = req.body.complaint || req.body.complaint_text;
-
   if (!complaint) {
     return res.status(400).json({ error: "Complaint is required" });
   }
-
   try {
     const activeComplaintsResult = await pool.query(
       "SELECT id, complaint_text, status FROM complaints WHERE status != 'resolved'"
@@ -125,11 +123,7 @@ exports.createComplaint = async (req, res) => {
       [complaint, category, priority, "pending", department, deadline, now, imagePath]
     );
 
-    res.status(201).json({
-      message: "Complaint registered",
-      data: result.rows[0],
-    });
-
+    res.status(201).json({ message: "Complaint registered", data: result.rows[0] });
   } catch (error) {
     console.error("ERROR:", error.message);
     res.status(500).json({ error: "Something went wrong" });
@@ -150,6 +144,7 @@ exports.getComplaintById = async (req, res) => {
   }
 };
 
+// ── SLA Monitoring ───────────────────────────────────────────────────────────
 const { getSLASummary, getSLAAlerts } = require("../services/slaService");
 
 exports.getSLASummary = async (req, res) => {
@@ -166,6 +161,40 @@ exports.getSLAAlerts = async (req, res) => {
   try {
     const data = await getSLAAlerts();
     res.json(data);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
+// ── Feedback ─────────────────────────────────────────────────────────────────
+exports.saveFeedback = async (req, res) => {
+  const { complaint_id, rating, comment } = req.body;
+  if (!rating) {
+    return res.status(400).json({ error: "Rating is required" });
+  }
+  try {
+    await pool.query(
+      `INSERT INTO feedback (complaint_id, rating, comment, created_at)
+       VALUES ($1, $2, $3, NOW())`,
+      [complaint_id || null, rating, comment || null]
+    );
+    res.status(201).json({ message: "Feedback saved" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Could not save feedback" });
+  }
+};
+
+exports.getAllFeedback = async (req, res) => {
+  try {
+    const result = await pool.query(
+      `SELECT f.*, c.department, c.complaint_text
+       FROM feedback f
+       LEFT JOIN complaints c ON f.complaint_id = c.id
+       ORDER BY f.created_at DESC`
+    );
+    res.json(result.rows);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Server error" });
